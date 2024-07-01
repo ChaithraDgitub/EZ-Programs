@@ -1,0 +1,12 @@
+weights = [1,3,5,4,1,3,2]
+prices = [5,10,15,7,8,9,4]
+n = 7
+capacity = 15
+Dp=[[0 for i in range(capacity+1)]for i in range(n+1)]
+for i in range(1,n+1):
+    for capacity in range(i,capacity+1):
+        if capacity-weights[i-1]<0:
+            Dp[i][capacity]=Dp[i-1][capacity]
+        else:    
+           Dp[i][capacity]=max(Dp[i-1][capacity],prices[i-1]+Dp[i-1][capacity-weights[i-1]])
+print(Dp[n][capacity])       
